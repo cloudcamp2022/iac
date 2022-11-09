@@ -25,6 +25,10 @@
       python3.9 -m venv /iac --without-pip
       curl https://bootstrap.pypa.io/get-pip.py | python3.9
     become: yes
+  - name: "Init venv Python3.9"
+    pip: virtualenv="/iac"
+     virtualenv_python=python3.9
+     requirements=/iac/requirements.txt
   - name: "Config DB_HOST envvar"
     shell: |
       echo "DB_HOST={{ new_database_info['instances'][0]['endpoint']['address'] }}" >> /etc/environment
