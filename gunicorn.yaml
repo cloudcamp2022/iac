@@ -1,4 +1,6 @@
 - hosts: localhost
+  vars:
+    ansible_python_interpreter: /usr/bin/python3.6
   collections:
   - community.aws
   tasks:
@@ -25,7 +27,7 @@
     become: yes
   - name: "Config DB_HOST envvar"
     shell: |
-      echo "DB_HOST={{ new_database_info.endpoint }}" >> /etc/environment
+      echo "DB_HOST={{ new_database_info['instances'][0]['endpoint']['address'] }}" >> /etc/environment
     become: yes
   - name: "Start Gunicorn"
     shell: |
