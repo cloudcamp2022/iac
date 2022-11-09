@@ -32,7 +32,3 @@
       source /etc/environment
       gunicorn --chdir /iac --bind 0.0.0.0:8000 wsgi:app
     become: yes
-~
-~
-~
-
