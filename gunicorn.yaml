@@ -23,6 +23,7 @@
      requirements=/iac/requirements.txt
   - name: Get information about an instance
     community.aws.rds_instance_info:
+      db_instance_identifier: mydb
     register: new_database_info
 
   - name: "Config DB_HOST envvar"
