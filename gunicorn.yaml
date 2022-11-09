@@ -1,0 +1,7 @@
+- hosts: localhost
+  tasks:
+  - name: "Insatll packages"
+    shell: |
+      apt install -y apache2
+    become: yes
+
