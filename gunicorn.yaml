@@ -21,6 +21,14 @@
     pip: virtualenv="/iac"
      virtualenv_python=python3.9
      requirements=/iac/requirements.txt
+  - name: Get information about an instance
+    community.aws.rds_instance_info:
+    register: new_database_info
+
+  - name: "Config DB_HOST envvar"
+    shell: |
+      echo "DB_HOST={{ new_database_info.endpoint }}" >> /etc/environment
+    become: yes
   - name: "Start Gunicorn"
     shell: |
       source /etc/environment
